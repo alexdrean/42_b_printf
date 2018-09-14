@@ -6,17 +6,18 @@
 /*   By: adrean <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 12:37:09 by adrean            #+#    #+#             */
-/*   Updated: 2018/09/13 23:04:31 by adrean           ###   ########.fr       */
+/*   Updated: 2018/09/13 23:49:48 by adrean           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdarg.h>
+#include "b_printf.h"
 
-static int	print_special(char c, va_list *argp)
+static int	print_special(const char **ptr, va_list *argp)
 {
 	int len;
+	char c;
 
+	c = **ptr;
 	if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*argp, int), 10));
 	if (c == 'o')
@@ -33,7 +34,16 @@ static int	print_special(char c, va_list *argp)
 		len += ft_putnbr_base(va_arg(*argp, unsigned long), 16);
 		return (len);
 	}
-	return (ft_putchar(va_arg(*argp, int)));
+	if (c == 'c')
+		return (ft_putchar(va_arg(*argp, int)));
+	if (c == ' ') {
+		while (**ptr == ' ')
+			*ptr += 1;
+		if (**ptr == 0)
+			return (0);
+		return (print_special(ptr, argp));
+	}
+	return (ft_putchar(c));
 }
 
 int			b_printf(const char *format, ...)
@@ -46,7 +56,10 @@ int			b_printf(const char *format, ...)
 	while (*format != 0)
 	{
 		if (*format == '%')
-			len += print_special(*++format, &argp);
+		{
+			format++;
+			len += print_special(&format, &argp);
+		}
 		else
 			len += ft_putchar(*format);
 		format++;
