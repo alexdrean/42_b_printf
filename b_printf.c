@@ -6,18 +6,38 @@
 /*   By: adrean <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 12:37:09 by adrean            #+#    #+#             */
-/*   Updated: 2018/09/13 23:49:48 by adrean           ###   ########.fr       */
+/*   Updated: 2018/09/14 00:05:53 by adrean           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "b_printf.h"
 
-static int	print_special(const char **ptr, va_list *argp)
+static int	print_pointer(va_list *argp)
 {
 	int len;
-	char c;
+
+	len = 0;
+	len = ft_putstr("0x");
+	len += ft_putnbr_base(va_arg(*argp, unsigned long), 16);
+	return (len);
+}
+
+static int	handle_space(const char **ptr, va_list *argp)
+{
+	while (**ptr == ' ')
+		*ptr += 1;
+	if (**ptr == 0)
+		return (0);
+	return (print_special(ptr, argp));
+}
+
+static int	print_special(const char **ptr, va_list *argp)
+{
+	char	c;
 
 	c = **ptr;
+	if (c == ' ')
+		return (handle_space(ptr, argp));
 	if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*argp, int), 10));
 	if (c == 'o')
@@ -29,20 +49,9 @@ static int	print_special(const char **ptr, va_list *argp)
 	if (c == 's')
 		return (ft_putstr(va_arg(*argp, char*)));
 	if (c == 'p')
-	{
-		len = ft_putstr("0x");
-		len += ft_putnbr_base(va_arg(*argp, unsigned long), 16);
-		return (len);
-	}
+		return (print_pointer(argp));
 	if (c == 'c')
 		return (ft_putchar(va_arg(*argp, int)));
-	if (c == ' ') {
-		while (**ptr == ' ')
-			*ptr += 1;
-		if (**ptr == 0)
-			return (0);
-		return (print_special(ptr, argp));
-	}
 	return (ft_putchar(c));
 }
 

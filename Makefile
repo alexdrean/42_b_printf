@@ -6,7 +6,7 @@
 #    By: adrean <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/13 12:16:33 by adrean            #+#    #+#              #
-#    Updated: 2018/09/13 23:18:28 by adrean           ###   ########.fr        #
+#    Updated: 2018/09/14 00:05:06 by adrean           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ $(NAME):
 all: $(NAME)
 
 clean:
-	rm -f *.o
+	rm -f *.o "__.SYMDEF SORTED"
 
 fclean: clean
 	rm -f $(NAME)
