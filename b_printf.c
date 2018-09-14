@@ -6,7 +6,7 @@
 /*   By: adrean <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 12:37:09 by adrean            #+#    #+#             */
-/*   Updated: 2018/09/13 22:27:09 by adrean           ###   ########.fr       */
+/*   Updated: 2018/09/13 23:04:31 by adrean           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ static int	print_special(char c, va_list *argp)
 
 	if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(*argp, int), 10));
-	if (c == 'l')
-		return (ft_putnbr_base(va_arg(*argp, long), 10));
 	if (c == 'o')
-		return (ft_putnbr_base(va_arg(*argp, int), 8));
+		return (ft_putnbr_base(va_arg(*argp, unsigned int), 8));
 	if (c == 'x')
-		return (ft_putnbr_base(va_arg(*argp, int), 16));
+		return (ft_putnbr_base(va_arg(*argp, unsigned int), 16));
 	if (c == 'u')
 		return (ft_putnbr_base(va_arg(*argp, unsigned int), 10));
 	if (c == 's')

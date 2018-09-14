@@ -6,18 +6,19 @@
 #    By: adrean <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/13 12:16:33 by adrean            #+#    #+#              #
-#    Updated: 2018/09/13 22:34:58 by adrean           ###   ########.fr        #
+#    Updated: 2018/09/13 23:16:49 by adrean           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 FLAGS = -c -Werror -Wextra -Wall
-SRC = b_printf.c -I libft.a
-OUT = b_printf.o
+LIBS = libft.a
+SRC = b_printf.c -I $(LIBS)
 
 $(NAME):
 	gcc $(FLAGS) $(SRC)
-	ar rcs $(NAME) $(OUT)
+	ar -x $(LIBS)
+	ar -rcs $(NAME) *.o
 
 all: $(NAME)
 
