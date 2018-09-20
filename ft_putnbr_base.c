@@ -6,7 +6,7 @@
 /*   By: adrean <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 22:22:37 by adrean            #+#    #+#             */
-/*   Updated: 2018/09/13 22:23:13 by adrean           ###   ########.fr       */
+/*   Updated: 2018/09/19 20:44:18 by adrean           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_putnbr_base(long n, char base)
 		n = -n;
 	}
 	divider = 1;
-	while (divider * base < n)
+	while (divider * base <= n)
 		divider *= base;
 	while (divider)
 	{
