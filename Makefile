@@ -6,7 +6,7 @@
 #    By: adrean <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/13 12:16:33 by adrean            #+#    #+#              #
-#    Updated: 2018/09/19 20:26:00 by adrean           ###   ########.fr        #
+#    Updated: 2018/09/19 20:54:43 by adrean           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OUT = $(SRC:.c=.o)
 $(NAME):
 	gcc $(FLAGS) $(SRC)
 	ar -rcs $(NAME) $(OUT)
+	ranlib $(NAME)
 
 all: $(NAME)
 
