@@ -6,7 +6,7 @@
 /*   By: adrean <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 22:20:49 by adrean            #+#    #+#             */
-/*   Updated: 2018/09/13 22:20:57 by adrean           ###   ########.fr       */
+/*   Updated: 2018/09/17 21:40:21 by adrean           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_putstr(char *str)
 	int i;
 
 	i = 0;
+	if (str == NULL)
+		return (ft_putstr("(null)"));
 	while (str[i])
 		i++;
 	return (write(1, str, i));
